@@ -8,17 +8,51 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("===== Plantation Tracking System =====");
+        int choice;
 
-        addPlant();
+        do {
+            System.out.println("\n===== Plantation Tracking System =====");
+            System.out.println("1. Add Plant");
+            System.out.println("2. View Plants");
+            System.out.println("3. Search Plant");
+            System.out.println("4. Update Plant");
+            System.out.println("5. Delete Plant");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
 
-        System.out.println("\n===== Plant Records =====");
-        viewPlants();
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.print("\nEnter Plant ID to search: ");
-        int searchId = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    addPlant();
+                    break;
 
-        searchPlant(searchId);
+                case 2:
+                    viewPlants();
+                    break;
+
+                case 3:
+                    searchPlant();
+                    break;
+
+                case 4:
+                    updatePlant();
+                    break;
+
+                case 5:
+                    deletePlant();
+                    break;
+
+                case 6:
+                    System.out.println("Thank you for using Plantation Tracking System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
+            }
+
+        } while (choice != 6);
     }
 
     static void addPlant() {
@@ -49,7 +83,7 @@ public class Main {
 
         plants.add(plant);
 
-        System.out.println("\nPlant added successfully!");
+        System.out.println("Plant added successfully!");
     }
 
     static void viewPlants() {
@@ -58,6 +92,8 @@ public class Main {
             System.out.println("No plants found.");
             return;
         }
+
+        System.out.println("\n===== Plant Records =====");
 
         for (Plant plant : plants) {
             System.out.println("ID: " + plant.getId());
@@ -69,19 +105,11 @@ public class Main {
         }
     }
 
-    static void searchPlant(int id) {
+    static void searchPlant() {
+
+        System.out.print("Enter Plant ID to search: ");
+        int id = scanner.nextInt();
 
         for (Plant plant : plants) {
 
-            if (plant.getId() == id) {
-                System.out.println("\nPlant found!");
-                System.out.println("Name: " + plant.getPlantName());
-                System.out.println("Species: " + plant.getSpecies());
-                System.out.println("Location: " + plant.getLocation());
-                return;
-            }
-        }
-
-        System.out.println("Plant not found.");
-    }
-}
+            if (
