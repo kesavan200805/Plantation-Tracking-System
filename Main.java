@@ -10,6 +10,19 @@ public class Main {
 
         System.out.println("===== Plantation Tracking System =====");
 
+        addPlant();
+
+        System.out.println("\n===== Plant Records =====");
+        viewPlants();
+
+        System.out.print("\nEnter Plant ID to search: ");
+        int searchId = scanner.nextInt();
+
+        searchPlant(searchId);
+    }
+
+    static void addPlant() {
+
         System.out.print("Enter Plant ID: ");
         int id = scanner.nextInt();
         scanner.nextLine();
@@ -37,9 +50,38 @@ public class Main {
         plants.add(plant);
 
         System.out.println("\nPlant added successfully!");
-        System.out.println("Plant Name: " + plant.getPlantName());
-        System.out.println("Species: " + plant.getSpecies());
-        System.out.println("Location: " + plant.getLocation());
-        System.out.println("Planting Date: " + plant.getPlantingDate());
+    }
+
+    static void viewPlants() {
+
+        if (plants.isEmpty()) {
+            System.out.println("No plants found.");
+            return;
+        }
+
+        for (Plant plant : plants) {
+            System.out.println("ID: " + plant.getId());
+            System.out.println("Name: " + plant.getPlantName());
+            System.out.println("Species: " + plant.getSpecies());
+            System.out.println("Location: " + plant.getLocation());
+            System.out.println("Planting Date: " + plant.getPlantingDate());
+            System.out.println("-------------------------");
+        }
+    }
+
+    static void searchPlant(int id) {
+
+        for (Plant plant : plants) {
+
+            if (plant.getId() == id) {
+                System.out.println("\nPlant found!");
+                System.out.println("Name: " + plant.getPlantName());
+                System.out.println("Species: " + plant.getSpecies());
+                System.out.println("Location: " + plant.getLocation());
+                return;
+            }
+        }
+
+        System.out.println("Plant not found.");
     }
 }
